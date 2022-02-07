@@ -1,0 +1,7 @@
+.CartWidget{
+    display: flex;
+    background-color: rgb(216, 194, 194);
+    padding: 5px;
+    order: 1;
+    border-radius: 8px;
+}
