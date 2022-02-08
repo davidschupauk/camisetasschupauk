@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import {useState} from "react";
 
-const FunctionCounter = (props) => {
-    const [count, setCount] = useState(0)
+const FunctionCounter = ({itemTitle, stock, initial}) => {
+    const [count, setCount] = useState(initial)
     
+    /*
     useEffect(()=>{
         console.log("el componente se montó")
         setCount(count + 1)
@@ -14,7 +15,7 @@ const FunctionCounter = (props) => {
       }, [])
     
       console.log("voy a renderizar.")
-    
+    */
 
     const decrement = () => {
         if(count>0){
@@ -23,15 +24,24 @@ const FunctionCounter = (props) => {
     }
 
     const increment = () =>{
-        setCount(count+1)
+        if(count<stock){
+            setCount(count+1)
+        }
+        
     }
+    const onAdd = () =>{
+        alert("se agregaron: " + count  + " productos");
+     }
+     
+
 
     return(
         <div>
-            <h3>FunctionCounter</h3>
+            <h3>{itemTitle}</h3>
             <h3>{count}</h3>
             <button onClick={decrement}>-</button>
             <button onClick={increment}>+</button>
+            <button onClick={onAdd}>Agregar al carrito</button>
         </div>
     )
 }

@@ -1,7 +1,9 @@
 import './ItemListContainer.css'
+import FunctionCounter from '../FunctionCounter/FunctionCounter';
 
 
 const ItemListContainer = ({greeting}) => {
+      
       return (
           <div className='ItemListContainer'>
             <h1>{greeting}</h1>
