@@ -3,7 +3,6 @@ import {useState} from "react";
 
 const FunctionCounter = ({itemTitle, stock, initial}) => {
     const [count, setCount] = useState(initial)
-    
     /*
     useEffect(()=>{
         console.log("el componente se montó")
@@ -26,6 +25,7 @@ const FunctionCounter = ({itemTitle, stock, initial}) => {
     const increment = () =>{
         if(count<stock){
             setCount(count+1)
+            
         }
         
     }
