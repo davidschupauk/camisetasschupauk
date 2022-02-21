@@ -1,44 +1,31 @@
 import './NavBar.css'
-import Button from '../Button/Button'
 import CartWidget from '../CartWidget/CartWidget'
+import { NavLink } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { getCategories } from '../../asyncmock'
 
-const NavBar = ({title, color, routing}) => {
-  //Click en el boton Arg
-  const handleArg = () => {
-    console.log("ARGGGGG");
-  }
-  //Click en el boton America
-  const handleAme = () => {
-    console.log("America");
-  }
-  //Click en el boton Europa
-  const handleEuro = () => {
-    console.log("Eurooo");
-  }
-  //Click en el boton Seleccion
-  const handleSele = () => {
-    console.log("Seleee");
-  }
+const NavBar = () => { //{ title: 'ecommerce ', color='red'}
+  const [categories, setCategories] = useState([])
+  
+  useEffect(() => {
+    getCategories().then(categories => {
+      setCategories(categories)
+    })
+  }, [])
 
-    return (
-      <nav className='NavBar'>
-        <div className='titulo' onclick={()=> routing({path: 'list', id: 1})}>
-          <div>
-            <img src={'./images/logo192.png'} alt='logo' height="50px"/>
-          </div>
-          <div>
-              <h1 className="title">{title}</h1>
-          </div>
+  return (
+      <nav className="NavBar" >
+        <div>
+            <h2>Casacapp</h2>
         </div>
-        
-        <Button label="Argentina" handleClick={handleArg}/>
-        <Button label="America" handleClick={handleAme}/>
-        <Button label="Europa" handleClick={handleEuro}/>
-        <Button label="Selecciones" handleClick={handleSele}/>
+        <div className="Categories">
+          {categories.map(cat => <NavLink key={cat.id} to={`/category/${cat.id}`} className={({ isActive }) =>
+              isActive ? 'ActiveOption' : 'Option'
+            }>{cat.description}</NavLink>)}
+        </div>
         <CartWidget />
       </nav>
-      
-    )
+  )
 }
 
-export default NavBar;
+export default NavBar

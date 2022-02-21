@@ -31,8 +31,10 @@ const ItemListContainer = ({greeting}) => {
               products.length ? 
                 <>
                   <h1>{greeting}</h1>
-                  <ItemList products={products} />
-                </>: 
+                  <div className='cards'>
+                    <ItemList className='ItemList' products={products} />
+                  </div>
+                </>:
                 <h1>No se encontraron Productos</h1>
             } 
           </div>

@@ -31,7 +31,7 @@ export const getProduct = (id) => {
 
 
 export const getCategories =()=>{
-    return new PromiseRejectionEvent((resolve) => {
+    return new Promise((resolve) => {
         setTimeout(()=>{
             resolve(categories)
         }, 1000)
