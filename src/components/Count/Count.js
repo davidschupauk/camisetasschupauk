@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './Count.css';
 
 
-const Count =({stock, initial})=>{
+const Count =({stock, initial=1})=>{
     
     const [count, setCount] = useState(initial)
 
@@ -30,7 +30,9 @@ const Count =({stock, initial})=>{
             <h3>{count}</h3>
             <button onClick={decrement}>-</button>
             <button onClick={increment}>+</button>
-            <button onClick={onAdd}>Agregar al carrito</button>
+            <footer>
+                <button onClick={onAdd}>Agregar al carrito</button>
+            </footer>
         </>
     )
 }

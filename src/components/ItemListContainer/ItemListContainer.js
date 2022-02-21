@@ -1,29 +1,42 @@
 import './ItemListContainer.css'
-import {products , getProducts} from '../../asyncmock';
+import {getProducts} from '../../asyncmock';
 import { useEffect, useState } from 'react';
 import ItemList from '../ItemList/ItemList'
 
 const ItemListContainer = ({greeting}) => {
-    const [products, setProducts] = useState([]);
-  
-    useEffect(() => {
-      getProducts.then((res)=>{
-        setProducts(res)
-        console.log(setProducts);
-      });
+    const [products, setProducts] = useState();
+    const [loading, setLoading] = useState(true)
 
-      getProducts.catch((error)=>{
-        console.log(error);
+    useEffect(() => {
+      getProducts().then(item=>{
+        setProducts(item)
+      }).catch(err =>{
+        console.log(err)
+      }).finally(()=>{
+        setLoading(false)
       })
+
+     return(()=> {
+       setProducts()
+     })
     
   }, [])
 
   
       return (
           <div className='ItemListContainer'>
-            <h1>{greeting}</h1>
-            <ItemList products = {products}/>
+            {
+              loading ? 
+                <h1>Cargando...</h1>:
+              products.length ? 
+                <>
+                  <h1>{greeting}</h1>
+                  <ItemList products={products} />
+                </>: 
+                <h1>No se encontraron Productos</h1>
+            } 
           </div>
+              
       );
   }
   

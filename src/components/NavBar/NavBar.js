@@ -2,7 +2,7 @@ import './NavBar.css'
 import Button from '../Button/Button'
 import CartWidget from '../CartWidget/CartWidget'
 
-const NavBar = ({title, color}) => {
+const NavBar = ({title, color, routing}) => {
   //Click en el boton Arg
   const handleArg = () => {
     console.log("ARGGGGG");
@@ -22,15 +22,17 @@ const NavBar = ({title, color}) => {
 
     return (
       <nav className='NavBar'>
-        <div>
-          <img src={'./images/logo192.png'} alt='logo' height="50px"/>
-        </div>
-        <div>
-            <h1 className="title">{title}</h1>
+        <div className='titulo' onclick={()=> routing({path: 'list', id: 1})}>
+          <div>
+            <img src={'./images/logo192.png'} alt='logo' height="50px"/>
+          </div>
+          <div>
+              <h1 className="title">{title}</h1>
+          </div>
         </div>
         
-        <Button label="Argentina" backgroundColor='red' handleClick={handleArg}/>
-        <Button label="America" colorText='green'handleClick={handleAme}/>
+        <Button label="Argentina" handleClick={handleArg}/>
+        <Button label="America" handleClick={handleAme}/>
         <Button label="Europa" handleClick={handleEuro}/>
         <Button label="Selecciones" handleClick={handleSele}/>
         <CartWidget />
