@@ -3,6 +3,12 @@ import './Item.css';
 import {Link} from 'react-router-dom';
 
 const Item = ({product})=>{
+
+    const handleClick = (evt) =>{
+        evt.stopPropagation();
+        evt.preventDefault();
+        console.log("clckeado")
+    }
     return(
         <div className='container'>
             <h3>{product.title}</h3>
@@ -12,6 +18,7 @@ const Item = ({product})=>{
             </section>
             <footer>
                 <Link classname='option' to={`/detail/${product.id}`}>Ver Detalle</Link>
+                {/*<button onClick={handleClick}>Botoncito</button>*/}
             </footer>
         </div>
     );

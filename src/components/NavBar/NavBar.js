@@ -1,8 +1,8 @@
 import './NavBar.css'
 import CartWidget from '../CartWidget/CartWidget'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { getCategories } from '../../asyncmock'
+import { getCategories, getProductsByCategory } from '../../asyncmock'
 
 const NavBar = () => { //{ title: 'ecommerce ', color='red'}
   const [categories, setCategories] = useState([])
@@ -13,13 +13,16 @@ const NavBar = () => { //{ title: 'ecommerce ', color='red'}
     })
   }, [])
 
+
+
   return (
       <nav className="NavBar" >
         <div>
-            <h2>Casacapp</h2>
+            <h2><Link to={`/`}>CASACAPP</Link></h2>
         </div>
         <div className="Categories">
-          {categories.map(cat => <NavLink key={cat.id} to={`/category/${cat.id}`} className={({ isActive }) =>
+          {categories.map(cat => 
+            <NavLink key={cat.id} to={`/category/${cat.id}`} className={({ isActive }) =>
               isActive ? 'ActiveOption' : 'Option'
             }>{cat.description}</NavLink>)}
         </div>

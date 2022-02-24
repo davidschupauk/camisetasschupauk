@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './Count.css';
 
 
@@ -20,8 +20,9 @@ const Count =({stock, initial=1})=>{
     }
     
     const onAdd = () =>{
-        alert("se agregaron: " + count  + " productos");
-     }
+        console.log("se agregaron: " + count  + " productos");
+
+    }
      
 
 
