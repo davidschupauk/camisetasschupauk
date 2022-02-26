@@ -10,6 +10,7 @@ const ItemListContainer = ({greeting}) => {
     const {categoryId} = useParams();
 
     useEffect(() => {
+      setLoading(true)
         getProducts(categoryId).then(item=>{
           setProducts(item)
         }).catch(err =>{
@@ -21,10 +22,13 @@ const ItemListContainer = ({greeting}) => {
      return(()=> {
        setProducts()
      })
+     
     
   }, [categoryId])
 
+
   
+
       return (
           <div className='ItemListContainer'>
             {
@@ -34,7 +38,7 @@ const ItemListContainer = ({greeting}) => {
                 <>
                   <h1>{greeting}</h1>
                   <div className='cards'>
-                    <ItemList className='ItemList' products={products} />
+                    <ItemList className='ItemList' products={products}/>
                   </div>
                 </>:
                 <h1>No se encontraron Productos</h1>

@@ -18,7 +18,6 @@ const Item = ({product})=>{
             </section>
             <footer>
                 <Link classname='option' to={`/detail/${product.id}`}>Ver Detalle</Link>
-                {/*<button onClick={handleClick}>Botoncito</button>*/}
             </footer>
         </div>
     );
