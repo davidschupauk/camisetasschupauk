@@ -9,6 +9,11 @@ const ItemListContainer = ({greeting}) => {
     const [loading, setLoading] = useState(true);
     const {categoryId} = useParams();
 
+    /*const onResize = () =>{
+      console.log("Ventana mod");
+    }*/
+
+    
     useEffect(() => {
       setLoading(true)
         getProducts(categoryId).then(item=>{
@@ -19,8 +24,10 @@ const ItemListContainer = ({greeting}) => {
           setLoading(false)
         })
   
+      //window.addEventListener('resize', onResize)
      return(()=> {
        setProducts()
+      // window.removeEventListener('resize', onResize);
      })
      
     

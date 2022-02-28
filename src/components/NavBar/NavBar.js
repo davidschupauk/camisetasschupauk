@@ -2,7 +2,7 @@ import './NavBar.css'
 import CartWidget from '../CartWidget/CartWidget'
 import { Link, NavLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { getCategories, getProductsByCategory } from '../../asyncmock'
+import { getCategories} from '../../asyncmock'
 
 const NavBar = () => { //{ title: 'ecommerce ', color='red'}
   const [categories, setCategories] = useState([])

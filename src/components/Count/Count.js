@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import './Count.css';
 
 
-const Count =({stock, initial=1})=>{
+const Count =({stock, initial=1, onAdd})=>{
     
     const [count, setCount] = useState(initial)
 
@@ -19,10 +19,7 @@ const Count =({stock, initial=1})=>{
         }   
     }
     
-    const onAdd = () =>{
-        console.log("se agregaron: " + count  + " productos");
-
-    }
+    
      
 
 
@@ -32,7 +29,7 @@ const Count =({stock, initial=1})=>{
             <button onClick={decrement}>-</button>
             <button onClick={increment}>+</button>
             <footer>
-                <button onClick={onAdd}>Agregar al carrito</button>
+                <button onClick={() => onAdd(count)}>Agregar al carrito</button>
             </footer>
         </>
     )

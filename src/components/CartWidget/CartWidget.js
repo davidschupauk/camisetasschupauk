@@ -8,10 +8,10 @@ const CartWidget = () => {
     }
 
       return (
-          <div className='CartWidget'>
+          <button className='CartWidget'>
             <img src={'./images/cart.png'} alt='cart' height="50px"/>
             <p>0</p>
-          </div>
+          </button>
       )
   }
   
