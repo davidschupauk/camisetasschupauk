@@ -4,10 +4,6 @@ import {Link} from 'react-router-dom';
 
 const Item = ({product})=>{
 
-   const handleClick = (e) => {
-       e.stopPropagation();
-       console.log('hice click')
-   }
     return(
         <div className='container' onClick={()=>console.log('click en la card')}>
             <h3>{product.title}</h3>
@@ -18,7 +14,6 @@ const Item = ({product})=>{
             </section>
             <footer>
                 <Link classname='option' to={`/detail/${product.id}`}>Ver Detalle</Link>
-                <button onClick={handleClick}>BTN</button>
             </footer>
         </div>
     );
