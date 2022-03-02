@@ -26,7 +26,11 @@ export const CartContextProvider = ({children}) =>{
     }
 
     const removeItem = (id) =>{
-        //sacar lo que quiero
+        return cart.filter(p => p.id != id)
+    }
+
+    const clearCart = () => {
+        cart = [];
     }
 
     return(
