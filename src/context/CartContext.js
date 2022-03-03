@@ -10,15 +10,32 @@ export const CartContextProvider = ({children}) =>{
     const addItem = (productoAAgregar, cantidad) =>{
         const ObjAAgregar = {
             ...productoAAgregar,
-            cantidad
+            quantity: cantidad
         }
 
         if(isInCart(productoAAgregar.id)){
-            alert("Producto duplicado, no se agrega.")
+            actualizarItemInCart(productoAAgregar)
+            console.log(cart)
         }else{
             setCart([...cart, ObjAAgregar])
             console.log(cart)
         }
+    }
+    
+    const actualizarItemInCart = (productoAAgregar) => {
+        const actualCart = cart.map(prod => {
+            if(prod.id === productoAAgregar.id) {
+                const productoActualizado = {
+                    ...prod,
+                    quantity: prod.quantity + productoAAgregar.quantity
+                }
+                return productoActualizado
+            } else {
+                return prod
+            }
+        })
+
+        setCart(actualCart)
     }
 
     const isInCart = (id) => {

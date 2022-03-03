@@ -26,7 +26,7 @@ const NavBar = () => { //{ title: 'ecommerce ', color='red'}
               isActive ? 'ActiveOption' : 'Option'
             }>{cat.description}</NavLink>)}
         </div>
-        <CartWidget />
+        <CartWidget/>
       </nav>
   )
 }
