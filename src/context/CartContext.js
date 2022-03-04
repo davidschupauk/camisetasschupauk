@@ -43,7 +43,8 @@ export const CartContextProvider = ({children}) =>{
     }
 
     const removeItem = (id) =>{
-        return cart.filter(p => p.id != id)
+        let copiaCart = [...cart]
+        return copiaCart.filter(p => p.id != id)
     }
 
     const clearCart = () => {
