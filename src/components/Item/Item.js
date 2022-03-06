@@ -1,4 +1,3 @@
-import Count from '../Count/Count';
 import './Item.css';
 import {Link} from 'react-router-dom';
 
@@ -10,7 +9,6 @@ const Item = ({product})=>{
             <img src={product.img} width="200px" />
             <section>
                 <p>Precio ${product.price}</p>
-                {/*<Count stock={product.stock} initial={1}/>*/}
             </section>
             <footer>
                 <Link classname='option' to={`/detail/${product.id}`}>Ver Detalle</Link>

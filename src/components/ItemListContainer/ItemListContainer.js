@@ -1,33 +1,33 @@
 import './ItemListContainer.css'
-import {getProducts} from '../../asyncmock';
 import { useEffect, useState } from 'react';
 import ItemList from '../ItemList/ItemList'
 import {useParams} from 'react-router-dom'
-
+import { getDocs, collection, query, where} from 'firebase/firestore';
+import { db } from "../../services/firebase/firebase"
 const ItemListContainer = ({greeting}) => {
     const [products, setProducts] = useState();
     const [loading, setLoading] = useState(true);
     const {categoryId} = useParams();
 
-    /*const onResize = () =>{
-      console.log("Ventana mod");
-    }*/
 
     
     useEffect(() => {
       setLoading(true)
-        getProducts(categoryId).then(item=>{
-          setProducts(item)
-        }).catch(err =>{
-          console.log(err)
-        }).finally(()=>{
-          setLoading(false)
+      const collectionRef = categoryId ? 
+      query(collection(db, 'products'), where('category', "==", categoryId)) : 
+      collection(db, 'products')
+
+      getDocs(collectionRef).then(res =>{
+        const products = res.docs.map(doc =>{
+          return {id: doc.id, ...doc.data()}
         })
+        setProducts(products)
+      }).finally(()=>{
+        setLoading(false)
+      })
   
-      //window.addEventListener('resize', onResize)
-     return(()=> {
+    return(()=> {
        setProducts()
-      // window.removeEventListener('resize', onResize);
      })
      
     
