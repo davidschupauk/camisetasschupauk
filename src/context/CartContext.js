@@ -1,4 +1,4 @@
-import React, {createContext, useState} from "react";
+import React, { useState} from "react";
 
 const Context = React.createContext();
 
@@ -14,21 +14,25 @@ export const CartContextProvider = ({children}) =>{
         }
 
         if(isInCart(productoAAgregar.id)){
-            actualizarItemInCart(productoAAgregar)
-            console.log(cart)
+            actualizarItemInCart(ObjAAgregar)
         }else{
-            setCart([...cart, ObjAAgregar])
-            console.log(cart)
+            agregarItemToCart(ObjAAgregar)
         }
     }
     
-    const actualizarItemInCart = (productoAAgregar) => {
+    const agregarItemToCart = (ObjAAgregar) => {
+        setCart([...cart, ObjAAgregar])
+    }
+
+
+    const actualizarItemInCart = (ObjAAgregar) => {
         const actualCart = cart.map(prod => {
-            if(prod.id === productoAAgregar.id) {
+            if(prod.id === ObjAAgregar.id) {
                 const productoActualizado = {
                     ...prod,
-                    quantity: prod.quantity + productoAAgregar.quantity
+                    quantity: prod.quantity + ObjAAgregar.quantity
                 }
+                console.log(productoActualizado)
                 return productoActualizado
             } else {
                 return prod
@@ -43,16 +47,32 @@ export const CartContextProvider = ({children}) =>{
     }
 
     const removeItem = (id) =>{
-        let copiaCart = [...cart]
-        return copiaCart.filter(p => p.id != id)
+        const nuevoCart = cart.filter(p => p.id !== id)
+        setCart(nuevoCart)
     }
 
     const clearCart = () => {
         setCart([])
     }
 
+    const cartTotal = () =>{
+        let total = 0
+        cart.forEach(prod =>{
+            total = total + prod.price * prod.quantity
+        })
+        return total
+    }
+
+    const cartCantidad = () => {
+        let contador = 0
+        cart.forEach(item => {
+            contador = contador + item.quantity
+        })
+        return contador
+    }
+
     return(
-        <Context.Provider value={{cart, addItem, removeItem, clearCart}}>
+        <Context.Provider value={{cart, addItem, removeItem, clearCart, cartTotal, cartCantidad}}>
             {children}
         </Context.Provider>
     )

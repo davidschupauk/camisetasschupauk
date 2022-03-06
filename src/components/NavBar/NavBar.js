@@ -1,12 +1,16 @@
 import './NavBar.css'
 import CartWidget from '../CartWidget/CartWidget'
 import { Link, NavLink } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { getCategories} from '../../asyncmock'
+import CartContext from '../../context/CartContext'
+
+
 
 const NavBar = () => { //{ title: 'ecommerce ', color='red'}
   const [categories, setCategories] = useState([])
-  
+  const {cart} = useContext(CartContext)
+
   useEffect(() => {
     getCategories().then(categories => {
       setCategories(categories)
@@ -26,7 +30,7 @@ const NavBar = () => { //{ title: 'ecommerce ', color='red'}
               isActive ? 'ActiveOption' : 'Option'
             }>{cat.description}</NavLink>)}
         </div>
-        <CartWidget/>
+        {cart.length > 0 && <CartWidget />}
       </nav>
   )
 }
