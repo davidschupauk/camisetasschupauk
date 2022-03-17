@@ -6,8 +6,8 @@
     height: 80px;
     background: #b2c4db;
   }
-
   
+
 
   .Categories {
     display: flex;
@@ -20,16 +20,11 @@
     color :rgb(255, 255, 255)
   }
   
-  .titulo{
-    display: flex;
-    padding-top: 15px;
-  }
+
   .Option {
-    /* color: #8C30F5; */
     text-decoration: none;
     border-radius: 25;
     margin: 0 50px;
-    /* TODO */
     width: auto;
     padding: 12px;
     font-size: 20px;
@@ -51,11 +46,9 @@
   }
   
   .ActiveOption {
-    /* color: #8C30F5; */
     text-decoration: none;
     border-radius: 25;
     margin: 0 50px;
-    /* TODO */
     width: auto;
     padding: 12px;
     font-size: 20px;

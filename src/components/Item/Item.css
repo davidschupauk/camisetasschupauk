@@ -3,7 +3,21 @@
     padding: 30px;
     margin: 30px;
     font-size: 10px;
-    background-color: papayawhip;
+    background-color: rgb(240, 225, 200);
     border: 1px solid #e1e1e1;
-    border-radius: 10px;
+    border-radius: 20px;
+}
+
+.option{
+    font-size: 15px;
+    color: blue;
+    text-decoration: none;
+}
+
+h3{
+    font-size: 20px;
+}
+
+p{
+    font-size: 12px;
 }

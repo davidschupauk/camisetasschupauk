@@ -7,7 +7,7 @@ import { getDocs, collection } from 'firebase/firestore'
 import { db } from '../../services/firebase/firebase'
 
 
-const NavBar = () => { //{ title: 'ecommerce ', color='red'}
+const NavBar = () => { 
   const [categories, setCategories] = useState([])
   const {cart} = useContext(CartContext)
 

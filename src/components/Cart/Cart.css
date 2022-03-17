@@ -27,3 +27,21 @@
     margin: 20px;
     background-color: #db0c0c;
 }
+
+.camiseta{
+    height: 100px;
+    width: 100px;
+}
+
+.tablaProds{
+    width: 1200px;
+    background-color: #fafafa;
+  
+    padding: 10px 1rem;
+    margin: 1rem;
+    border: black 1px solid;
+}
+
+td{
+    border: black 0.5px dotted;
+}

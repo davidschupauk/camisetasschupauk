@@ -38,7 +38,7 @@ const Cart = () => {
             total: cartTotal(),
             date: Timestamp.fromDate(new Date())
         }
-        console.log(objOrden)
+    
         const batch = writeBatch(db)
         const outOfStock = []
 
@@ -51,21 +51,30 @@ const Cart = () => {
                 }else{
                     outOfStock.push({id: res.id , ...res.data()})
                 }
-            })            
+            }).then(()=>{
+                ejecutarOrden(objOrden, batch, outOfStock)
+            }).finally(()=>{
+                setProcessingOrder(false)
+            })        
         })
 
-        if(outOfStock.length === 0){
-            addDoc(collection(db, 'orders'), objOrden).then(({id})=>{
-                batch.commit().then(()=>{
-                    clearCart()
-                    alert(`su orden quedó confirmada, el numero es ${id}`)
-                }).finally(()=>{
-                    setProcessingOrder(false)
-                })
-            })
-        }
+        
     }else{
-        alert("Debe completar sus datos de contacto!")
+            alert("Debe completar sus datos de contacto!")
+    }
+}
+const ejecutarOrden = (objOrden, batch, outOfStock) =>{
+    if(outOfStock.length === 0){
+        addDoc(collection(db, 'orders'), objOrden).then(({id})=>{
+            batch.commit().then(()=>{
+                clearCart()
+                alert(`su orden quedó confirmada, el numero es ${id}`)
+            }).finally(()=>{
+                setProcessingOrder(false)
+            })
+        })
+    }else{
+        alert("Orden rechazada por falta de stock")         
     }
 }
     
@@ -76,23 +85,36 @@ const Cart = () => {
 
     const handleRemover = (id, title) => {
         removeItem(id)
-        console.log(`se eliminó '${title}' del carrito`)
+        
     }
     return (
         <>
         <h1>Este es el carrito</h1>
-        {
-            cart.map(item =>{
-                return(
-                    <div key={item.id} style={{display: 'flex'}}>
-                        <h3>Camiseta de: {item.title}, --{'>'}    </h3>
-                        <h3>Cantidad: {item.quantity}--{'>'}   </h3>
-                        <h3>Precio por unidad: ${item.price}</h3>
-                        <button className="btnEliminar" onClick={() => handleRemover(item.id, item.title)}>Eliminar Producto</button>
-                    </div>
-                )
-            })
-        }
+        <table className='tablaProds'>
+            <thead>
+                <tr>
+                    <th scope="col">Equipo</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Precio Unitario</th>       
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    cart.map(item =>{
+                        return(
+                            <tr key={item.id}>
+                                <td>{item.title}</td>
+                                <td>{item.quantity}</td>
+                                <td><img className="camiseta" src={item.img} alt={item.title}/></td>
+                                <td>${item.price}</td>
+                                <td className="btnEliminar" onClick={() => handleRemover(item.id, item.title)}>X</td>
+                            </tr>
+                        )
+                    })
+                }
+            </tbody>
+        </table>
         <h1>Total: ${cartTotal()}</h1>
         <button onClick={() => clearCart()}>Eliminar Carrito</button>
         <button onClick={() => confirmarOrden()}>Confirmar orden</button>{

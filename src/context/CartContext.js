@@ -32,7 +32,7 @@ export const CartContextProvider = ({children}) =>{
                     ...prod,
                     quantity: prod.quantity + ObjAAgregar.quantity
                 }
-                console.log(productoActualizado)
+
                 return productoActualizado
             } else {
                 return prod
